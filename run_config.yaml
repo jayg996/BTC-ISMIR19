@@ -1,0 +1,43 @@
+mp3:
+  song_hz: 22050
+  inst_len: 10.0
+  skip_interval: 5.0
+
+feature:
+  n_bins: 144
+  bins_per_octave: 24
+  hop_length: 2048
+  large_voca: False
+#  large_voca: True
+
+experiment:
+  learning_rate : 0.0001
+  weight_decay : 0.0
+  max_epoch : 100
+  batch_size : 128
+  save_step : 40
+  data_ratio : 0.8
+
+model:
+  feature_size : 144
+  timestep : 108
+  num_chords : 25
+#  num_chords : 170
+  input_dropout : 0.2
+  layer_dropout : 0.2
+  attention_dropout : 0.2
+  relu_dropout : 0.2
+  num_layers : 8
+  num_heads : 4
+  hidden_size : 128
+  total_key_depth : 128
+  total_value_depth : 128
+  filter_size : 128
+  loss : 'ce'
+  probs_out : False
+
+path:
+  ckpt_path : 'model'
+  result_path : 'result'
+  asset_path : '/data/music/chord_recognition/jayg996/assets'
+  root_path : '/data/music/chord_recognition'
