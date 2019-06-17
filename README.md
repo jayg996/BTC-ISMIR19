@@ -18,7 +18,7 @@ This repository has the source codes for the paper "A Bi-Directional Transformer
   * `btc_model.py` : contains pytorch implementation of BTC.
   * `train.py` : for training. 
   * `crf_model.py` : contatins pytorch implementation of Conditional Random Fields (CRFs) .
-  * `baseline_model.py` : contains the codes of baseline models.
+  * `baseline_models.py` : contains the codes of baseline models.
   * `train_crf.py` : for training CRFs.  
   * `run_config.yaml` : includes hyper parameters and paths that are needed.
   * `test.py` : for recognizing chord from audio file. 
