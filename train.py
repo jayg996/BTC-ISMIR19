@@ -4,7 +4,7 @@ from utils import logger
 from audio_dataset import AudioDataset, AudioDataLoader
 from utils.tf_logger import TF_Logger
 from btc_model import *
-from enemy_models import CNN, CRNN
+from baseline_models import CNN, CRNN
 from utils.hparams import HParams
 import argparse
 from utils.pytorch_utils import adjusting_learning_rate
