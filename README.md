@@ -16,18 +16,18 @@ This repository has the source codes for the paper "A Bi-Directional Transformer
 ## File descriptions
   * `audio_dataset.py` : loads data and preprocesses label files to chord labels and mp3 files to constant-q transformation. 
   * `btc_model.py` : contains pytorch implementation of BTC.
-  * `train.py` : is for training. 
+  * `train.py` : for training. 
   * `crf_model.py` : contatins pytorch implementation of Conditional Random Fields (CRFs) .
-  * `enemy_model.py` : contains the codes of enemy models.
-  * `train_crf.py` : is for training CRFs.  
+  * `baseline_model.py` : contains the codes of baseline models.
+  * `train_crf.py` : for training CRFs.  
   * `run_config.yaml` : includes hyper parameters and paths that are needed.
-  * `test.py` : is for recognizing chord from audio file. 
+  * `test.py` : for recognizing chord from audio file. 
 
 ## Test BTC : Recognizing chords from an audio file 
   * STEP 1. Put an mp3 file in name of `test\example.mp3`. 
   The default example file is free music audio from http://www.freemusicarchive.org/.
   * STEP 2. Run `test.py`.  
-  * STEP 3. Check the file(`test\test.lab`) that were created.
+  * STEP 3. Check the file(`test\test.lab`) that is created.
   <img src="png/example.png">
 
 ## Attention Map
