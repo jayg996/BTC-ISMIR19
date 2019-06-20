@@ -1,17 +1,31 @@
 import os
 from utils import logger
 from btc_model import *
-from utils.mir_eval_modules import audio_file_to_features, idx2chord
+from utils.mir_eval_modules import audio_file_to_features, idx2chord, idx2voca_chord
 
+logger.logging_verbosity(1)
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
 config = HParams.load("run_config.yaml")
+
+voca = False # True means large vocabulary label type
+if voca == True:
+    config.feature['large_voca'] = True
+    config.model['num_chords'] = 170
+    model_file = 'test/btc_model_large_voca.pt'
+    idx_to_chord = idx2voca_chord()
+    logger.info("label type: large voca")
+else:
+    model_file = 'test/btc_model.pt'
+    idx_to_chord = idx2chord
+    logger.info("label type: large voca")
+
 model = BTC_model(config=config.model).to(device)
 
 # Load model
-if os.path.isfile('test/btc_model.pt'):
-    checkpoint = torch.load('test/btc_model.pt')
+if os.path.isfile(model_file):
+    checkpoint = torch.load(model_file)
     mean = checkpoint['mean']
     std = checkpoint['std']
     model.load_state_dict(checkpoint['model'])
@@ -22,6 +36,7 @@ if os.path.isfile('test/btc_model.pt'):
 # Monplaisir_-_01_-_Everything_is_true
 mp3_file_path = 'test/example.mp3'
 feature, feature_per_second, song_length_second = audio_file_to_features(mp3_file_path, config)
+logger.info("audio file loaded and feature computation success")
 
 # Majmin type chord recognition
 feature = feature.T
@@ -49,14 +64,14 @@ with torch.no_grad():
             if prediction[i].item() != prev_chord:
                 lines.append(
                     '%.6f %.6f %s\n' % (
-                        start_time, time_unit * (n_timestep * t + i), idx2chord[prev_chord]))
+                        start_time, time_unit * (n_timestep * t + i), idx_to_chord[prev_chord]))
                 start_time = time_unit * (n_timestep * t + i)
                 prev_chord = prediction[i].item()
             if t == num_instance - 1 and i + num_pad == n_timestep:
                 if start_time != time_unit * (n_timestep * t + i):
                     lines.append(
                         '%.6f %.6f %s\n' % (
-                            start_time, time_unit * (n_timestep * t + i), idx2chord[prev_chord]))
+                            start_time, time_unit * (n_timestep * t + i), idx_to_chord[prev_chord]))
                 break
 
 # lab file write
@@ -65,3 +80,4 @@ with open(test_result_path, 'w') as f:
     for line in lines:
         f.write(line)
 
+logger.info("label file saved")
