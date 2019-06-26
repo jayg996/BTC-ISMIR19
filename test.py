@@ -19,7 +19,7 @@ if voca == True:
 else:
     model_file = 'test/btc_model.pt'
     idx_to_chord = idx2chord
-    logger.info("label type: large voca")
+    logger.info("label type: Major and minor")
 
 model = BTC_model(config=config.model).to(device)
 
