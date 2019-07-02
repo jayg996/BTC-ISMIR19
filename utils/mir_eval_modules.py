@@ -220,7 +220,7 @@ def root_majmin_score_calculation(valid_dataset, config, mean, std, device, mode
                 feature = torch.tensor(feature, dtype=torch.float32).unsqueeze(0).to(device)
                 for t in range(num_instance):
                     if model_type == 'btc':
-                        encoder_output, _ = model.encoder(feature[:, n_timestep * t:n_timestep * (t + 1), :])
+                        encoder_output, _ = model.self_attn_layers(feature[:, n_timestep * t:n_timestep * (t + 1), :])
                         prediction, _ = model.output_layer(encoder_output)
                         prediction = prediction.squeeze()
                     elif model_type == 'cnn' or model_type =='crnn':
@@ -363,7 +363,7 @@ def large_voca_score_calculation(valid_dataset, config, mean, std, device, model
                 feature = torch.tensor(feature, dtype=torch.float32).unsqueeze(0).to(device)
                 for t in range(num_instance):
                     if model_type == 'btc':
-                        encoder_output, _ = model.encoder(feature[:, n_timestep * t:n_timestep * (t + 1), :])
+                        encoder_output, _ = model.self_attn_layers(feature[:, n_timestep * t:n_timestep * (t + 1), :])
                         prediction, _ = model.output_layer(encoder_output)
                         prediction = prediction.squeeze()
                     elif model_type == 'cnn' or model_type =='crnn':
