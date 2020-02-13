@@ -45,6 +45,11 @@ def audio_file_to_features(audio_file, config):
     song_length_second = len(original_wav)/config.mp3['song_hz']
     return feature, feature_per_second, song_length_second
 
+# Audio files with format of wav and mp3
+def get_audio_paths(audio_dir):
+    return [os.path.join(root, fname) for (root, dir_names, file_names) in os.walk(audio_dir, followlinks=True)
+            for fname in file_names if (fname.lower().endswith('.wav') or fname.lower().endswith('.mp3'))]
+
 class metrics():
     def __init__(self):
         super(metrics, self).__init__()

@@ -23,11 +23,17 @@ This repository has the source codes for the paper "A Bi-Directional Transformer
   * `run_config.yaml` : includes hyper parameters and paths that are needed.
   * `test.py` : for recognizing chord from audio file. 
 
-## Test BTC : Recognizing chords from an audio file 
-  * STEP 1. Put an mp3 file in name of `test\example.mp3`. 
-  The default example file is free music audio from http://www.freemusicarchive.org/.
-  * STEP 2. Run `test.py`.  
-  * STEP 3. Check the file(`test\test.lab`) that is created.
+## Using BTC : Recognizing chords from files in audio directory
+
+### Using BTC from command line (example)
+```bash 
+$ python test.py --audio_dir audio_folder --save_dir save_folder --voca False
+```
+  * audio_dir : a folder of audio files for chord recognition (default: './test')
+  * save_dir : a forder for saving recognition results (default: './test')
+  * voca : False means major and minor label type, and True means large vocabulary label type (default: False)
+  
+The resulting files are lab files of the form shown below.
   <img src="png/example.png">
 
 ## Attention Map
