@@ -25,7 +25,7 @@ This repository has the source codes for the paper "A Bi-Directional Transformer
 
 ## Using BTC : Recognizing chords from files in audio directory
 
-### Using BTC from command line (example)
+### Using BTC from command line
 ```bash 
 $ python test.py --audio_dir audio_folder --save_dir save_folder --voca False
 ```
@@ -34,6 +34,7 @@ $ python test.py --audio_dir audio_folder --save_dir save_folder --voca False
   * voca : False means major and minor label type, and True means large vocabulary label type (default: False)
   
 The resulting files are lab files of the form shown below.
+
   <img src="png/example.png">
 
 ## Attention Map
