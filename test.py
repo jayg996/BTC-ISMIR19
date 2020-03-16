@@ -84,6 +84,8 @@ for i, audio_path in enumerate(audio_paths):
                     break
 
     # lab file write
+    if not os.path.exists(args.save_dir):
+        os.makedirs(args.save_dir)
     save_path = os.path.join(args.save_dir, os.path.split(audio_path)[-1].replace('.mp3', '').replace('.wav', '') + '.lab')
     with open(save_path, 'w') as f:
         for line in lines:
