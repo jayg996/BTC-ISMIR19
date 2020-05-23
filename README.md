@@ -12,6 +12,7 @@ This repository has the source codes for the paper "A Bi-Directional Transformer
 - librosa >= 0.6.3
 - pyyaml >= 3.13
 - mir_eval >= 0.5
+- pretty_midi >= 0.2.8
 
 ## File descriptions
   * `audio_dataset.py` : loads data and preprocesses label files to chord labels and mp3 files to constant-q transformation. 
@@ -33,7 +34,7 @@ $ python test.py --audio_dir audio_folder --save_dir save_folder --voca False
   * save_dir : a forder for saving recognition results (default: './test')
   * voca : False means major and minor label type, and True means large vocabulary label type (default: False)
   
-The resulting files are lab files of the form shown below.
+The resulting files are lab files of the form shown below and midi files.
 
   <img src="png/example.png">
 
